@@ -25,16 +25,16 @@ def register():
 def login():
     if request.method == 'POST':
         email = request.form['email']
-        password = request.form['password']
+        password1 = request.form['password']
         user = User.query.filter_by(email=email).first()
-        if user and bcrypt.check_password_hash(user.password, password):
+        if user and bcrypt.check_password_hash(user.password, password1):
             login_user(user)
             flash('Logged in successfully!', 'success')
             return redirect(url_for('auth.dashboard'))
         else:
             flash('Login failed. Check email and password.', 'danger')
 
-    return render_template('login.html')
+    return render_template('login.html')      
 
 
 
